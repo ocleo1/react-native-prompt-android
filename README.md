@@ -11,6 +11,35 @@ Button sequence is same as react native doc, https://facebook.github.io/react-na
 * Two buttons mean 'negative', 'positive' (such as 'Cancel', 'OK')
 * Three buttons mean 'neutral', 'negative', 'positive' (such as 'Later', 'Cancel', 'OK')
 
+```java
+import com.ocleo1.dialog.PromptPackage; // <----- import
+
+public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
+  ......
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mReactRootView = new ReactRootView(this);
+
+    mReactInstanceManager = ReactInstanceManager.builder()
+      .setApplication(getApplication())
+      .setBundleAssetName("index.android.bundle")
+      .setJSMainModuleName("index.android")
+      .addPackage(new MainReactPackage())
+      .addPackage(new PromptPackage()) // <------ add here
+      .setUseDeveloperSupport(BuildConfig.DEBUG)
+      .setInitialLifecycleState(LifecycleState.RESUMED)
+      .build();
+
+    mReactRootView.startReactApplication(mReactInstanceManager, "App", null);
+
+    setContentView(mReactRootView);
+  }
+  ......
+}
+```
+
 ## Example
 ```js
 var Dialog = require('./Dialog');
