@@ -42,7 +42,9 @@ public class PromptModule extends ReactContextBaseJavaModule {
 
         editor.setTextColor(Color.BLACK);
 
-        alertDialogBuilder.setView(promptView).setTitle(title).setMessage(message);
+        alertDialogBuilder.setView(promptView);
+        if(title != null) alertDialogBuilder.setTitle(title);
+        if(message != null) alertDialogBuilder.setMessage(message);
 
         try {
             String positiveButton = Integer.toString(DialogInterface.BUTTON_POSITIVE);
